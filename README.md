@@ -21,3 +21,12 @@ Use: The folder where servlets are saved.
 
 7. Command: mvn tomcat7:run
 Use: Gets request from the client from the browser and gives it to the servelet (webserver).
+
+8. To upload/update code in files, go to the source control toolbar on the left hand side, ensure code is correct and commit. 
+For more details: https://code.visualstudio.com/docs/sourcecontrol/overview 
+
+Note: 
+Comand s = save (after every change)
+control c = stops the program
+arrow up = prvs command
+gitIgnore file ignroes files from being sumbitted
