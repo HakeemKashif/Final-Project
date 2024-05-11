@@ -1,4 +1,4 @@
-package com.finalproject.hello;
+package com.finalproject.servlet;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -6,10 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class HelloServlet extends HttpServlet {
+//@overiding
+public class MainServlet extends HttpServlet {
     public void doGet(HttpServletRequest request,
-                      HttpServletResponse response) throws IOException {
+                      HttpServletResponse response) throws IOException //if fails, it calls this exception (in try catch) 
+                      {
         PrintWriter out = response.getWriter();
+        //no system because np servlet
         out.println("<HTML>");
         out.println("<HEAD>");
         out.println("<TITLE>Hello Servlet</TITLE>");

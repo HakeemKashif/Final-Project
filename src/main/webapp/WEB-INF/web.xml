@@ -4,11 +4,11 @@
 
 <web-app>
 
-  <display-name>Hello World</display-name>
+  <display-name>Final Porject</display-name>
 
   <servlet>
     <servlet-name>Hello</servlet-name>
-    <servlet-class>com.finalproject.hello.HelloServlet</servlet-class>
+    <servlet-class>com.finalproject.servlet.MainServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
