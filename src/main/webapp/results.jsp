@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <!--Telling console to download DaisyUI(formatting) and CSS-->
+    <!-- Telling console to download DaisyUI (formatting) and CSS -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -43,8 +43,10 @@
             letter-spacing: .15em;
             animation: typing 3.5s steps(30, end), blink-caret .75s step-end 7;
             animation-fill-mode: forwards;
-            color: #fff;
+            color: #ffffff;
             /* Set title color to white */
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+            /* Add text glow effect */
         }
 
         /* Background image */
@@ -64,18 +66,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
 
         /* Adjust text color for better contrast */
         .text-primary-content {
-            color: #fff;
+            color: #ffffff;
             /* Set text color to white */
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+            /* Add text glow effect */
         }
 
         .bg-primary {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
             /* Set background color for dropdown headers with some transparency */
         }
 
@@ -89,16 +93,16 @@
             transition: 0.5s;
             margin: 10px;
             letter-spacing: 4px;
-            color: #fff;
+            color: #ffffff;
             background: linear-gradient(90deg, rgba(255, 0, 150, 1) 0%, rgba(0, 204, 255, 1) 100%);
             z-index: 2;
         }
 
         .btn-animated:hover {
-            background: #fff;
-            color: #000;
+            background: #ffffff;
+            color: #000000;
             border-radius: 5px;
-            box-shadow: 0 0 5px #fff, 0 0 25px #fff, 0 0 50px #fff, 0 0 100px #fff;
+            box-shadow: 0 0 5px #ffffff, 0 0 25px #ffffff, 0 0 50px #ffffff, 0 0 100px #ffffff;
         }
 
         .btn-animated::before {
@@ -131,38 +135,65 @@
         }
 
         .label-text {
-            color: #fff;
+            color: #ffffff;
+        }
+
+        /* Animation for elements */
+        .fade-in {
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 
-<body class="flex flex-col justify-center items-center h-screen w-full relative">
-    <div class="flex flex-col justify-center items-center space-y-4 z-10">
-        <!--Title: Automated Grading API-->
-        <h1 class="text-6xl font-bold typing-effect file-input-primary shadow-custom"
-            style="font-family: 'Sofia', Times, serif, sans-serif; font-style: italic;">
-            The student got 4
-        </h1>
+<body class="flex flex-col justify-start items-center h-screen w-full relative">
+    <!-- Main Title -->
+    <h1 class="text-8xl font-bold text-primary-content file-input-primary shadow-custom mt-12 fade-in"
+        style="font-family: 'Sofia', Times, serif, sans-serif; font-style: italic; position: relative; z-index: 2;">
+        Results Page
+    </h1>
 
-        <!-- Theme Button -->
-        <div class="dropdown mb-8 self-end" style="position: absolute; top: 20px; right: 20px;">
-            <div tabindex="0" role="button" class="btn btn-animated" id="theme-button">
-                Theme
-                <svg width="12px" height="12px" class="h-2 w-2 fill-current opacity-60 inline-block"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
-                    <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
-                </svg>
-            </div>
-            <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52">
-                <li><input type="radio" name="theme-dropdown"
-                        class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Default"
-                        value="default" /></li>
-                <li><input type="radio" name="theme-dropdown"
-                        class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro"
-                        value="retro" /></li>
-                <li><input type="radio" name="theme-dropdown"
-                        class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk"
-                        value="cyberpunk" /></li>
-                <li><input type="radio" name="theme-dropdown"
-                        class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine"
-                        value
+    <!-- Subtitle -->
+    <div class="flex-grow flex flex-col justify-center items-center fade-in" style="position: relative; z-index: 2;">
+        <h2 class="text-6xl font-bold text-white file-input-primary shadow-custom"
+            style="font-family: 'Sofia', Times, serif, sans-serif; font-style: italic;">
+            The student got a 90%.
+        </h2>
+    </div>
+
+    <!-- Theme Button -->
+    <div class="dropdown mb-8 self-end fade-in" style="position: absolute; top: 20px; right: 20px; z-index: 2;">
+        <div tabindex="0" role="button" class="btn btn-animated" id="theme-button">
+            Theme
+            <svg width="12px" height="12px" class="h-2 w-2 fill-current opacity-60 inline-block"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+                <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+        </svg>
+        </div>
+        <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52">
+            <li><input type="radio" name="theme-dropdown"
+                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Default"
+                    value="default" /></li>
+            <li><input type="radio" name="theme-dropdown"
+                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro"
+                    value="retro" /></li>
+            <li><input type="radio" name="theme-dropdown"
+                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk"
+                    value="cyberpunk" /></li>
+            <li><input type="radio" name="theme-dropdown"
+                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine"
+                    value="valentine" /></li>
+        </ul>
+    </div>
+</body>
+
+</html>
