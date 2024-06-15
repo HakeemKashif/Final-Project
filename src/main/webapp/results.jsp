@@ -18,6 +18,7 @@
         }
 
         @keyframes blink-caret {
+
             from,
             to {
                 border-color: transparent;
@@ -29,6 +30,7 @@
         }
 
         @keyframes stop-blink {
+
             from,
             to {
                 border-color: transparent;
@@ -152,6 +154,30 @@
                 opacity: 1;
             }
         }
+        .table-auto {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+ 
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
+        }
+ 
+        th {
+            background-color: #f8f8f8;
+            color: #333333;
+            font-weight: bold;
+        }
+ 
+        tr:hover {
+            background-color: #f1f1f1;
+        }
     </style>
 </head>
 
@@ -166,10 +192,10 @@
     <div class="flex-grow flex flex-col justify-center items-center fade-in" style="position: relative; z-index: 2;">
         <h2 class="text-6xl font-bold text-white file-input-primary shadow-custom"
             style="font-family: 'Sofia', Times, serif, sans-serif; font-style: italic;">
-            The student got a 90%.
+           <%= request.getParameter("grade") %>
         </h2>
     </div>
-
+              
     <!-- Theme Button -->
     <div class="dropdown mb-8 self-end fade-in" style="position: absolute; top: 20px; right: 20px; z-index: 2;">
         <div tabindex="0" role="button" class="btn btn-animated" id="theme-button">
@@ -177,7 +203,7 @@
             <svg width="12px" height="12px" class="h-2 w-2 fill-current opacity-60 inline-block"
                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
                 <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
-        </svg>
+            </svg>
         </div>
         <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52">
             <li><input type="radio" name="theme-dropdown"

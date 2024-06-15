@@ -18,6 +18,8 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -89,25 +91,19 @@ public class MainServlet extends HttpServlet {
                     .model("gpt-4o")
                     .messages(List.of(
                             SystemMessage.of(
-                                    "You are a helpful assistant that helps analyze images and convert the grade into percentages.se the following scale: 4+ = 98%, 4 = 90%, 4- = 80%, 3+ = 78%, 3 = 75%, 3- = 70%, 2+ = 68%, 2 = 66%, 2- = 60%, 1+ = 58%, 1 = 55%, 1- = 50%",
+                                    "You are a helpful assistant that helps analyze images and convert the grade into percentages. The following scale: 4+ = 98%, 4 = 90%, 4- = 80%, 3+ = 78%, 3 = 75%, 3- = 70%, 2+ = 68%, 2 = 66%, 2- = 60%, 1+ = 58%, 1 = 55%, 1- = 50%",
                                     "system"),
                             UserMessage.of(List.of(
                                     ContentPartText.of(
-                                            "What grade did this person get. Respond with just the student name and grade, no other text. If multiple grades are present respond in an array. If the person did not get a grade respond with an empty array. Here is the image: "),
+                                            "What grade did this person get. Respond with just the Student Name: (the acutual Student's Name(add comma beyween the actual Student Name and the text after the comma) Grade: (the actual percentage mark) , no other text. If multiple grades are present respond in an list. If the person did not get a grade respond with an empty list. Here is the image: "),
                                     ContentPartImageUrl.of(ImageUrl.of(imageUri))))))
                     .build();
             // Send request and get response
             Chat chatResponse = openAI.chatCompletions().create(chatRequest).join();
 
             // redirect to /results with the response
-            // response.sendRedirect("/results?response=" + futureResponse.join());
-            response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
-            out.println("<HTML>");
-            out.println("<BODY>");
-            out.println("<p>Response: " + chatResponse.getChoices().get(0).getMessage().getContent() + "</p>");
-            out.println("</BODY>");
-            out.println("</HTML>");
+            response.sendRedirect("results.jsp?grade=" + URLEncoder.encode(
+                    chatResponse.getChoices().get(0).getMessage().getContent(), StandardCharsets.UTF_8.toString()));
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                     "Failed to process image: " + e.getMessage());
