@@ -86,17 +86,16 @@ public class MainServlet extends HttpServlet {
             String imageUri = "data:image/jpeg;base64," + base64Image;
 
             ChatRequest chatRequest = ChatRequest.builder()
-                .model("gpt-4o")
-                .messages(List.of(
-                    SystemMessage.of(
-                        "You are a helpful assistant that helps analyze images and convert the grade into percentages. 4+ means 98%, 4 means 90%  4- means 80%, 3+ means 78%, 3 means 75%  3- means 70%, 2+ means 68%, 2 means 66%  2- means 60%, 1+ means 58%, 1 means 55%  1- means 50%",
-                        "system"),
-                    UserMessage.of(List.of(
-                        ContentPartText.of("What grade did this person get. Respond with just the grade no other text. If multiple grades are present respond in an array. If the person did not get a grade respond with an empty array. Here is the image: "),
-                        ContentPartImageUrl.of(ImageUrl.of(imageUri))
-                    ))
-                ))
-                .build();
+                    .model("gpt-4o")
+                    .messages(List.of(
+                            SystemMessage.of(
+                                    "You are a helpful assistant that helps analyze images and convert the grade into percentages.se the following scale: 4+ = 98%, 4 = 90%, 4- = 80%, 3+ = 78%, 3 = 75%, 3- = 70%, 2+ = 68%, 2 = 66%, 2- = 60%, 1+ = 58%, 1 = 55%, 1- = 50%",
+                                    "system"),
+                            UserMessage.of(List.of(
+                                    ContentPartText.of(
+                                            "What grade did this person get. Respond with just the student name and grade, no other text. If multiple grades are present respond in an array. If the person did not get a grade respond with an empty array. Here is the image: "),
+                                    ContentPartImageUrl.of(ImageUrl.of(imageUri))))))
+                    .build();
             // Send request and get response
             Chat chatResponse = openAI.chatCompletions().create(chatRequest).join();
 
@@ -107,7 +106,7 @@ public class MainServlet extends HttpServlet {
             out.println("<HTML>");
             out.println("<BODY>");
             out.println("<p>Response: " + chatResponse.getChoices().get(0).getMessage().getContent() + "</p>");
-            out.println("</BODY>");ç
+            out.println("</BODY>");
             out.println("</HTML>");
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
